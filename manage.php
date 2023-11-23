@@ -40,6 +40,7 @@ $files=all('files');
             <td>大小</td>
             <td>描述</td>
             <td>上傳時間</td>
+            <td>操作</td>
         </tr>
         <?php
     foreach($files as $file){
@@ -70,11 +71,15 @@ $files=all('files');
     ?>
         <tr>
             <td><?=$file['id'];?></td>
-            <td><img class='thumbs' src="imgs/<?=$file['name'];?>"></td>
+            <td><img class='thumbs' src="<?=$imgname;?>"></td>
             <td><?=$file['type'];?></td>
             <td><?=$file['size'];?></td>
             <td><?=$file['desc'];?></td>
             <td><?=$file['create_at'];?></td>
+            <td>
+                <button class="btn btn-info">編輯</button>
+                <button class="btn btn-danger">刪除</button>
+            </td>
         </tr>
     <?php
     }
