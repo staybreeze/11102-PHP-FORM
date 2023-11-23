@@ -86,6 +86,7 @@ if (isset($_GET['id'])) {
                 </tr>
             </table>
             <div class="text-center m-3">
+                <input type="hidden" name="id"  value="<?= $file['id'];?>">
                 <input type="submit" value="更新">
             </div>
         </div>
