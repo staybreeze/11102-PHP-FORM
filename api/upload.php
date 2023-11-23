@@ -1,5 +1,5 @@
 <?php
-include_once "../db.php";
+include_once "../db.php.php";
 /* echo $_POST['name'];
 echo "<br>"; */
 if(!empty($_FILES['img']['tmp_name'])){

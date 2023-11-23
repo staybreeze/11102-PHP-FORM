@@ -22,7 +22,7 @@ function total($table, $id)
     } else {
         echo "錯誤:參數的資料型態比須是數字或陣列";
     }
-    echo 'find=>' . $sql;
+    // echo 'find=>' . $sql;
     $row = $pdo->query($sql)->fetchColumn();
     return $row;
 }
@@ -60,7 +60,7 @@ function all($table = null, $where = '', $other = '')
         }
 
         $sql .= $other;
-        echo 'all=>' . $sql;
+        // echo 'all=>' . $sql;
         $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     } else {

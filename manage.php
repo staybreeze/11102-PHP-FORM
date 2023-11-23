@@ -5,7 +5,7 @@
  * 3.取得檔案資訊並寫入資料表
  * 4.製作檔案管理功能頁面
  */
-include_once "db.php";
+include_once "./db.php.php";
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@ $files=all('files');
     ?>
         <tr>
             <td><?=$file['id'];?></td>
-            <td><?=$file['name'];?></td>
+            <td><img class='thumbs' src="imgs/<?=$file['name'];?>"></td>
             <td><?=$file['type'];?></td>
             <td><?=$file['size'];?></td>
             <td><?=$file['desc'];?></td>
