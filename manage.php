@@ -78,6 +78,7 @@ include_once "./db.php";
             ?>
                 <tr>
                     <td><?= $file['id']; ?></td>
+                    <!-- 指定顯示的結果為img -->
                     <td><img class='thumbs' src="<?= $imgname; ?>"></td>
                     <td><?= $file['type']; ?></td>
                     <td><?= $file['size']; ?></td>
