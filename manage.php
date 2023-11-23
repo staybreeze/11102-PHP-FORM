@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 1.建立資料庫及資料表來儲存檔案資訊
  * 2.建立上傳表單頁面
@@ -10,6 +11,7 @@ include_once "./db.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,77 +20,83 @@ include_once "./db.php";
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-<h1 class="header">檔案管理練習</h1>
-<!----建立上傳檔案表單及相關的檔案資訊存入資料表機制----->
-<h3><a href="upload.php">上傳檔案</a></h3>
+    <h1 class="header">檔案管理練習</h1>
+    <!----建立上傳檔案表單及相關的檔案資訊存入資料表機制----->
+    <h3><a href="upload.php">上傳檔案</a></h3>
 
 
 
 
-<!----透過資料表來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
-<?php
-$files=all('files');
-
-?>
-<div class="col-8 mx-auto">
-    <table class='table table-success'>
-        <tr>
-            <td>id</td>
-            <td>檔名</td>
-            <td>類型</td>
-            <td>大小</td>
-            <td>描述</td>
-            <td>上傳時間</td>
-            <td>操作</td>
-        </tr>
-        <?php
-    foreach($files as $file){
-        switch($file['type']){
-            case "image/webp":
-            case "image/jpeg":
-            case "image/png":
-            case "image/gif":
-            case "image/bmp":
-                $imgname="./imgs/".$file['name'];
-            break;
-            case 'msword':
-                $imgname="./icon/wordicon.png";
-            break;
-            case 'msexcel':
-                $imgname="./icon/msexcel.png";
-            break;
-            case 'msppt':
-                $imgname="./icon/msppt.png";
-            break;
-            case 'pdf':
-                $imgname="./icon/pdf.png";
-            break;
-            default:
-                $imgname="./icon/other.png";
-
-        }
-    ?>
-        <tr>
-            <td><?=$file['id'];?></td>
-            <td><img class='thumbs' src="<?=$imgname;?>"></td>
-            <td><?=$file['type'];?></td>
-            <td><?=$file['size'];?></td>
-            <td><?=$file['desc'];?></td>
-            <td><?=$file['create_at'];?></td>
-            <td>
-                <button class="btn btn-info">編輯</button>
-                <button class="btn btn-danger">刪除</button>
-            </td>
-        </tr>
+    <!----透過資料表來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
     <?php
-    }
-    ?>    
-    </table>
-</div>
+    $files = all('files');
+
+    ?>
+    <div class="col-8 mx-auto">
+        <table class='table table-success'>
+            <tr>
+                <td>id</td>
+                <td>檔名</td>
+                <td>類型</td>
+                <td>大小</td>
+                <td>描述</td>
+                <td>上傳時間</td>
+                <td>操作</td>
+            </tr>
+            <?php
+            foreach ($files as $file) {
+                // 透過switch製作不同檔案的img顯示結果
+                // 因為'type'已經在upload.php分類成不同$type，因此可以沿用
+                switch ($file['type']) {
+                        // image顯示原圖
+                    case "image/webp":
+                    case "image/jpeg":
+                    case "image/png":
+                    case "image/gif":
+                    case "image/bmp":
+
+                        // 創造一個新的變數儲存顯示的img的路徑
+                        $imgname = "./imgs/" . $file['name'];
+                        break;
+                    case 'msword':
+                        $imgname = "./icon/wordicon.png";
+                        break;
+                    case 'msexcel':
+                        $imgname = "./icon/msexcel.png";
+                        break;
+                    case 'msppt':
+                        $imgname = "./icon/msppt.png";
+                        break;
+                    case 'pdf':
+                        $imgname = "./icon/pdf.png";
+                        break;
+                    default:
+                        $imgname = "./icon/other.png";
+                }
+            ?>
+                <tr>
+                    <td><?= $file['id']; ?></td>
+                    <td><img class='thumbs' src="<?= $imgname; ?>"></td>
+                    <td><?= $file['type']; ?></td>
+                    <td><?= $file['size']; ?></td>
+                    <td><?= $file['desc']; ?></td>
+                    <td><?= $file['create_at']; ?></td>
+                    <td>
+                        <button class="btn btn-info">編輯</button>
+                        <button class="btn btn-danger">刪除</button>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    </div>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

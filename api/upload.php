@@ -23,6 +23,7 @@ if (!empty($_FILES['img']['tmp_name'])) {
      * application/pdf - pdf
      */
 
+    //  利用switch轉化複雜檔名
      switch($_FILES['img']['type']){
         case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             $type="msword";
@@ -41,6 +42,7 @@ if (!empty($_FILES['img']['tmp_name'])) {
         case "image/png":
         case "image/gif":
         case "image/bmp":
+            // 維持原本檔名
             $type=$_FILES['img']['type'];
         break;
         default:
@@ -49,10 +51,11 @@ if (!empty($_FILES['img']['tmp_name'])) {
      }
 
     $file=['name'=>$filename,
+    // 'type'直接吃上面switch轉化好的$type，而不是$_FILES['img']['type']
             'type'=>$type,
             'size'=>$_FILES['img']['size'],
             'desc'=>$_POST['desc']];
-            
+
     insert('files', $file);
     //header("location:../upload.php?img=".$filename);
     header("location:../manage.php");
