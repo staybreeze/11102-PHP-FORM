@@ -5,7 +5,7 @@
  * 3.取得檔案資訊並寫入資料表
  * 4.製作檔案管理功能頁面
  */
-include_once "./db.php.php";
+include_once "./db.php";
 
 ?>
 <!DOCTYPE html>
