@@ -85,7 +85,7 @@ include_once "./db.php";
                     <td><?= $file['desc']; ?></td>
                     <td><?= $file['create_at']; ?></td>
                     <td>
-                        <button class="btn btn-info" onclick="location.href='./api/edit_file.php?id=<?= $file['id'];?>'">編輯</button>
+                        <button class="btn btn-info" onclick="location.href='./edit_file.php?id=<?= $file['id'];?>'">編輯</button>
                         <!-- 把刪除的資料帶給del_file.php -->
                         <!-- <button class="btn btn-danger"><a href='./api/del_file.php?id=<?//= $file['id'];?>'>刪除</a></button> -->
                         <button class="btn btn-danger" onclick="location.href='./api/del_file.php?id=<?= $file['id'];?>'">刪除</a></button>
