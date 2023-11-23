@@ -41,8 +41,32 @@ $files=all('files');
             <td>描述</td>
             <td>上傳時間</td>
         </tr>
-    <?php
+        <?php
     foreach($files as $file){
+        switch($file['type']){
+            case "image/webp":
+            case "image/jpeg":
+            case "image/png":
+            case "image/gif":
+            case "image/bmp":
+                $imgname="./imgs/".$file['name'];
+            break;
+            case 'msword':
+                $imgname="./icon/wordicon.png";
+            break;
+            case 'msexcel':
+                $imgname="./icon/msexcel.png";
+            break;
+            case 'msppt':
+                $imgname="./icon/msppt.png";
+            break;
+            case 'pdf':
+                $imgname="./icon/pdf.png";
+            break;
+            default:
+                $imgname="./icon/other.png";
+
+        }
     ?>
         <tr>
             <td><?=$file['id'];?></td>
