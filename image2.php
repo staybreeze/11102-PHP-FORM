@@ -10,34 +10,31 @@
  * 5.輸出檔案
  */
 
- if (!empty($_FILES['img']['tmp_name'])) {
-    move_uploaded_file($_FILES['img']['tmp_name'], './imgs/' . $_FILES['img']['name']);
-    $source_path = './imgs/' . $_FILES['img']['name'];
-    $type = $_FILES['img']['type'];
-
-    // 讀取圖片的寬度和高度
-    list($width, $height) = getimagesize($source_path);
-
-    // 根據圖片類型建立圖片資源
-    switch ($type) {
+ if(!empty($_FILES['img']['tmp_name'])){
+    move_uploaded_file($_FILES['img']['tmp_name'],'./imgs/'.$_FILES['img']['name']);
+    $source_path='./imgs/'.$_FILES['img']['name'];
+    $type=$_FILES['img']['type'];
+    switch($type){
         case 'image/jpeg':
-            $source = imagecreatefromjpeg($source_path);
-            break;
+            $source=imagecreatefromjpeg($source_path);
+            list($width,$height)=getimagesize($source_path);
+        break;
         case 'image/png':
-            $source = imagecreatefrompng($source_path);
-            break;
+            $source=imagecreatefrompng($source_path);
+            list($width,$height)=getimagesize($source_path);
+        break;
         case 'image/gif':
-            $source = imagecreatefromgif($source_path);
-            break;
+            $source=imagecreatefromgif($source_path);
+            list($width,$height)=getimagesize($source_path);
+        break;
         case 'image/bmp':
-            $source = imagecreatefrombmp($source_path);
-            break;
+            $source=imagecreatefrombmp($source_path);
+            list($width,$height)=getimagesize($source_path);
+        break;
     }
-
-
-    // echo $type."-";
-    // echo $width."-";
-    // echo $height."-";
+    echo $type."-";
+    echo $width."-";
+    echo $height."-";
     $dst_path='./imgs/thumb_'.$_FILES['img']['name'];
     $dst_width=300;
     $dst_height=300;
