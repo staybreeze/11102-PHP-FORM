@@ -141,10 +141,12 @@ function captcha($str){
         //計算放置的y坐標範圍，字元的高度加上邊框起始點(5)及總高度-底部坐標終點的限制(5)
         $y=rand($info['height']+5,$info['height']+($border*2-5*2));
 
-        //將字元依照大小，角度，坐標，顏色，字型等資訊畫在畫布上
+        // 這邊才真正開始畫
+        //將字元依照【大小，角度，坐標，顏色，字型，內容】等資訊畫在畫布上
         imagettftext($dst_img,$fontsize,$info['angle'],$x_pointer,$y,$colors[rand(0,count($colors)-1)],realpath('./fonts/arial.ttf'),$char);
 
         //依照字元的寬度及字元的x坐標來產生下一個字元的x坐標起點
+        // +1=>往旁邊移一格
         $x_pointer=$x_pointer+$info['width']+$info['x']+1;
     
     }
